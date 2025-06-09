@@ -1,0 +1,6 @@
+proxmox:
+  pve:
+    url: ${PVE_URL}
+    token:
+      id: ${PVE_TOKEN_ID}
+      secret: ${PVE_TOKEN_SECRET}
