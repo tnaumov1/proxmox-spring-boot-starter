@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Basic integration test for PveClient
@@ -19,6 +20,7 @@ import static org.assertj.core.api.Assertions.*;
  * Note: Proxmox VE API is mocked by WireMock and no actual API calls are happening.
  *
  */
+@ActiveProfiles("test")
 @SpringBootTest
 public class PveClientTest {
 

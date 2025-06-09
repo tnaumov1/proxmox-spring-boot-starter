@@ -1,7 +1,3 @@
-spring:
-  profiles:
-    active: test
-
 proxmox:
   pve:
     url: http://localhost:8006
