@@ -1,6 +1,8 @@
 package dev.tnaumov.proxmox.client;
 
 import dev.tnaumov.proxmox.config.PveProperties;
+import dev.tnaumov.proxmox.model.PveResponse;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestClient;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
@@ -46,6 +48,22 @@ public class PveClient {
     }
 
     /**
+     * Sends a GET request to the specified path of the Proxmox VE API.
+     *
+     * @param path the URI path to send the GET request to
+     * @param <T> the type of the response body
+     * @param responseType the parameterized type of the expected response body
+     * @return the response body parsed into the specified type
+     */
+    public <T> T get(String path, ParameterizedTypeReference<T> responseType) {
+        return restClient.get()
+                .uri(path)
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
      * Sends a POST request to the specified path of the Proxmox VE API.
      *
      * @param path the URI path to send the POST request to
@@ -55,6 +73,23 @@ public class PveClient {
      * @return the response body parsed into the specified type
      */
     public <T> T post(String path, Object bodyObject, Class<T> responseType) {
+        return restClient.post()
+                .uri(path)
+                .body(bodyObject)
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+    /**
+     * Sends a POST request to the specified path of the Proxmox VE API.
+     *
+     * @param path the URI path to send the POST request to
+     * @param bodyObject the object that represents the request body
+     * @param <T> the type of the response body
+     * @param responseType the parameterized type of the expected response body
+     * @return the response body parsed into the specified type
+     */
+    public <T> T post(String path, Object bodyObject, ParameterizedTypeReference<T> responseType) {
         return restClient.post()
                 .uri(path)
                 .body(bodyObject)
@@ -82,6 +117,24 @@ public class PveClient {
     }
 
     /**
+     * Sends a PATCH request to the specified path of the Proxmox VE API.
+     *
+     * @param path the URI path to send the PATCH request to
+     * @param bodyObject the object that represents the request body
+     * @param <T> the type of the response body
+     * @param responseType the parameterized type of the expected response body
+     * @return the response body parsed into the specified type
+     */
+    public <T> T patch(String path, Object bodyObject, ParameterizedTypeReference<T> responseType) {
+        return restClient.patch()
+                .uri(path)
+                .body(bodyObject)
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
      * Sends a PUT request to the specified path of the Proxmox VE API.
      *
      * @param path the URI path to send the PUT request to
@@ -100,6 +153,24 @@ public class PveClient {
     }
 
     /**
+     * Sends a PUT request to the specified path of the Proxmox VE API.
+     *
+     * @param path the URI path to send the PUT request to
+     * @param bodyObject the object that represents the request body
+     * @param <T> the type of the response body
+     * @param responseType the parameterized type of the expected response body
+     * @return the response body parsed into the specified type
+     */
+    public <T> T put(String path, Object bodyObject, ParameterizedTypeReference<T> responseType) {
+        return restClient.put()
+                .uri(path)
+                .body(bodyObject)
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
      * Sends a DELETE request to the specified path of the Proxmox VE API.
      *
      * @param path the URI path to send the DELETE request to
@@ -108,6 +179,22 @@ public class PveClient {
      * @return the response body parsed into the specified type
      */
     public <T> T delete(String path, Class<T> responseType) {
+        return restClient.delete()
+                .uri(path)
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
+     * Sends a DELETE request to the specified path of the Proxmox VE API.
+     *
+     * @param path the URI path to send the DELETE request to
+     * @param <T> the type of the response body
+     * @param responseType the parameterized type of the expected response body
+     * @return the response body parsed into the specified type
+     */
+    public <T> T delete(String path, ParameterizedTypeReference<T> responseType) {
         return restClient.delete()
                 .uri(path)
                 .retrieve()
