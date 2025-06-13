@@ -1,6 +1,7 @@
 package dev.tnaumov.proxmox;
 
 import dev.tnaumov.proxmox.client.PveClient;
+import dev.tnaumov.proxmox.service.PveVersionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -20,9 +21,10 @@ public class ExampleApplication {
     }
 
     @Bean
-    CommandLineRunner runner(PveClient pveClient) {
+    CommandLineRunner runner(PveClient pveClient, PveVersionService versionService) {
         return args -> {
             log.info("Root API: {}", pveClient.get("/", String.class));
+            log.info("PVE version: {}", versionService.getVersion().data());
         };
 
     }
