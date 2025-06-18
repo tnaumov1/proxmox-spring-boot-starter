@@ -1,4 +1,4 @@
-package dev.tnaumov.proxmox;
+package dev.tnaumov.proxmox.integration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * Basic sanity-test for Spring Boot app autoconfiguration
  */
 @SpringBootTest
-class SampleApplicationTest {
+class ApplicationTest {
 
     @Test
     void contextLoads() {

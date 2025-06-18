@@ -1,4 +1,4 @@
-package dev.tnaumov.proxmox;
+package dev.tnaumov.proxmox.integration;
 
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import dev.tnaumov.proxmox.client.PveClient;
