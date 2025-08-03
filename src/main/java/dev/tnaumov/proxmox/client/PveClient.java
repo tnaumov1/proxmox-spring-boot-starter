@@ -2,6 +2,7 @@ package dev.tnaumov.proxmox.client;
 
 import dev.tnaumov.proxmox.config.PveProperties;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestClient;
 
 import static org.springframework.http.HttpHeaders.ACCEPT;
@@ -63,6 +64,24 @@ public class PveClient {
     }
 
     /**
+     * Sends a GET request with query params to the specified path of the Proxmox VE API.
+     *
+     * @param path   the URI path to send the GET request
+     * @param params the query params map
+     * @return the response body parsed into the specified type
+     */
+    public <T> T get(String path, MultiValueMap<String, String> params, ParameterizedTypeReference<T> responseType) {
+        return restClient.get()
+                .uri(builder -> builder
+                        .path(path)
+                        .queryParams(params)
+                        .build())
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
      * Sends a POST request to the specified path of the Proxmox VE API.
      *
      * @param path the URI path to send the POST request to
@@ -92,6 +111,24 @@ public class PveClient {
         return restClient.post()
                 .uri(path)
                 .body(bodyObject)
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
+     * Sends a POST request without body to the specified path of the Proxmox VE API.
+     *
+     * @param path   the URI path to send the POST request
+     * @param params the query params map
+     * @return the response body parsed into the specified type
+     */
+    public <T> T post(String path, MultiValueMap<String, String> params, ParameterizedTypeReference<T> responseType) {
+        return restClient.post()
+                .uri(builder -> builder
+                        .path(path)
+                        .queryParams(params)
+                        .build())
                 .retrieve()
                 .toEntity(responseType)
                 .getBody();
@@ -134,6 +171,24 @@ public class PveClient {
     }
 
     /**
+     * Sends a PUT request without a body to the specified path of the Proxmox VE API.
+     *
+     * @param path   the URI path to send the PUT request
+     * @param params the query params map
+     * @return the response body parsed into the specified type
+     */
+    public <T> T put(String path, MultiValueMap<String, String> params, ParameterizedTypeReference<T> responseType) {
+        return restClient.put()
+                .uri(builder -> builder
+                        .path(path)
+                        .queryParams(params)
+                        .build())
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
      * Sends a DELETE request to the specified path of the Proxmox VE API.
      *
      * @param path the URI path to send the DELETE request to
@@ -160,6 +215,24 @@ public class PveClient {
     public <T> T delete(String path, ParameterizedTypeReference<T> responseType) {
         return restClient.delete()
                 .uri(path)
+                .retrieve()
+                .toEntity(responseType)
+                .getBody();
+    }
+
+    /**
+     * Sends a DELETE request with query params to the specified path of the Proxmox VE API.
+     *
+     * @param path   the URI path to send the DELETE request
+     * @param params the query params map
+     * @return the response body parsed into the specified type
+     */
+    public <T> T delete(String path, MultiValueMap<String, String> params, ParameterizedTypeReference<T> responseType) {
+        return restClient.delete()
+                .uri(builder -> builder
+                        .path(path)
+                        .queryParams(params)
+                        .build())
                 .retrieve()
                 .toEntity(responseType)
                 .getBody();
