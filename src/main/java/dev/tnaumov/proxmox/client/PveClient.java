@@ -98,42 +98,6 @@ public class PveClient {
     }
 
     /**
-     * Sends a PATCH request to the specified path of the Proxmox VE API.
-     *
-     * @param path the URI path to send the PATCH request to
-     * @param bodyObject the object that represents the request body
-     * @param <T> the type of the response body
-     * @param responseType the class type of the expected response body
-     * @return the response body parsed into the specified type
-     */
-    public <T> T patch(String path, Object bodyObject, Class<T> responseType) {
-        return restClient.patch()
-                .uri(path)
-                .body(bodyObject)
-                .retrieve()
-                .toEntity(responseType)
-                .getBody();
-    }
-
-    /**
-     * Sends a PATCH request to the specified path of the Proxmox VE API.
-     *
-     * @param path the URI path to send the PATCH request to
-     * @param bodyObject the object that represents the request body
-     * @param <T> the type of the response body
-     * @param responseType the parameterized type of the expected response body
-     * @return the response body parsed into the specified type
-     */
-    public <T> T patch(String path, Object bodyObject, ParameterizedTypeReference<T> responseType) {
-        return restClient.patch()
-                .uri(path)
-                .body(bodyObject)
-                .retrieve()
-                .toEntity(responseType)
-                .getBody();
-    }
-
-    /**
      * Sends a PUT request to the specified path of the Proxmox VE API.
      *
      * @param path the URI path to send the PUT request to
