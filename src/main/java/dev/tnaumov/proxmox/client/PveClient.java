@@ -1,7 +1,6 @@
 package dev.tnaumov.proxmox.client;
 
 import dev.tnaumov.proxmox.config.PveProperties;
-import dev.tnaumov.proxmox.model.PveResponse;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.web.client.RestClient;
 
