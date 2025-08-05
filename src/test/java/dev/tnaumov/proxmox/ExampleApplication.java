@@ -1,6 +1,7 @@
 package dev.tnaumov.proxmox;
 
 import dev.tnaumov.proxmox.client.PveClient;
+import dev.tnaumov.proxmox.service.PvePoolService;
 import dev.tnaumov.proxmox.service.PveVersionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +22,14 @@ public class ExampleApplication {
     }
 
     @Bean
-    CommandLineRunner runner(PveClient pveClient, PveVersionService versionService) {
+    CommandLineRunner runner(PveClient pveClient, PveVersionService versionService, PvePoolService pvePoolService) {
         return args -> {
             log.info("Root API: {}", pveClient.get("/", String.class));
             log.info("PVE version: {}", versionService.getVersion().data());
+            log.info("PVE pools: {}", pvePoolService.getPools().data());
+            log.info("Creating new PVE pool: {}", pvePoolService.createPool("pool", "comment").data());
+            log.info("Update PVE pool: {}", pvePoolService.updatePool("pool", false, "test", false, null, null).data());
+            log.info("Delete PVE pool: {}", pvePoolService.deletePool("pool").data());
         };
 
     }

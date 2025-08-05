@@ -2,6 +2,7 @@ package dev.tnaumov.proxmox.autoconfigure;
 
 import dev.tnaumov.proxmox.client.PveClient;
 import dev.tnaumov.proxmox.config.PveProperties;
+import dev.tnaumov.proxmox.service.PvePoolService;
 import dev.tnaumov.proxmox.service.PveVersionService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -53,6 +54,18 @@ public class PveAutoConfiguration {
     @ConditionalOnMissingBean
     PveVersionService pveVersionService(PveClient pveClient) {
         return new PveVersionService(pveClient);
+    }
+
+    /**
+     * Creates a PvePoolService service.
+     *
+     * @param pveClient the REST client used for API calls
+     * @return the {@link PvePoolService} bean
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    PvePoolService pvePoolService(PveClient pveClient) {
+        return new PvePoolService(pveClient);
     }
 
 }
