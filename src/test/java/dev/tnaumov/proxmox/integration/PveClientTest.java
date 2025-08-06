@@ -30,7 +30,6 @@ public class PveClientTest {
     @RegisterExtension
     private final static WireMockExtension wm = WireMockExtension.newInstance()
             .options(wireMockConfig().port(8006))
-            .configureStaticDsl(true)
             .build();
 
 
@@ -61,7 +60,7 @@ public class PveClientTest {
                 }
                 """;
 
-        stubFor(get("/api2/json/")
+        wm.stubFor(get("/api2/json/")
                 .withHeader("Accept", equalTo("application/json"))
                 .withHeader("Authorization", equalTo("PVEAPIToken=user@realm!token-id=generated-random-uuid"))
                 .willReturn(aResponse()
