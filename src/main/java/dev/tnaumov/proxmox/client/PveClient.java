@@ -82,41 +82,6 @@ public class PveClient {
     }
 
     /**
-     * Sends a POST request to the specified path of the Proxmox VE API.
-     *
-     * @param path the URI path to send the POST request to
-     * @param bodyObject the object that represents the request body
-     * @param <T> the type of the response body
-     * @param responseType the class type of the expected response body
-     * @return the response body parsed into the specified type
-     */
-    public <T> T post(String path, Object bodyObject, Class<T> responseType) {
-        return restClient.post()
-                .uri(path)
-                .body(bodyObject)
-                .retrieve()
-                .toEntity(responseType)
-                .getBody();
-    }
-    /**
-     * Sends a POST request to the specified path of the Proxmox VE API.
-     *
-     * @param path the URI path to send the POST request to
-     * @param bodyObject the object that represents the request body
-     * @param <T> the type of the response body
-     * @param responseType the parameterized type of the expected response body
-     * @return the response body parsed into the specified type
-     */
-    public <T> T post(String path, Object bodyObject, ParameterizedTypeReference<T> responseType) {
-        return restClient.post()
-                .uri(path)
-                .body(bodyObject)
-                .retrieve()
-                .toEntity(responseType)
-                .getBody();
-    }
-
-    /**
      * Sends a POST request without body to the specified path of the Proxmox VE API.
      *
      * @param path   the URI path to send the POST request
@@ -135,42 +100,6 @@ public class PveClient {
     }
 
     /**
-     * Sends a PUT request to the specified path of the Proxmox VE API.
-     *
-     * @param path the URI path to send the PUT request to
-     * @param bodyObject the object that represents the request body
-     * @param <T> the type of the response body
-     * @param responseType the class type of the expected response body
-     * @return the response body parsed into the specified type
-     */
-    public <T> T put(String path, Object bodyObject, Class<T> responseType) {
-        return restClient.put()
-                .uri(path)
-                .body(bodyObject)
-                .retrieve()
-                .toEntity(responseType)
-                .getBody();
-    }
-
-    /**
-     * Sends a PUT request to the specified path of the Proxmox VE API.
-     *
-     * @param path the URI path to send the PUT request to
-     * @param bodyObject the object that represents the request body
-     * @param <T> the type of the response body
-     * @param responseType the parameterized type of the expected response body
-     * @return the response body parsed into the specified type
-     */
-    public <T> T put(String path, Object bodyObject, ParameterizedTypeReference<T> responseType) {
-        return restClient.put()
-                .uri(path)
-                .body(bodyObject)
-                .retrieve()
-                .toEntity(responseType)
-                .getBody();
-    }
-
-    /**
      * Sends a PUT request without a body to the specified path of the Proxmox VE API.
      *
      * @param path   the URI path to send the PUT request
@@ -183,22 +112,6 @@ public class PveClient {
                         .path(path)
                         .queryParams(params)
                         .build())
-                .retrieve()
-                .toEntity(responseType)
-                .getBody();
-    }
-
-    /**
-     * Sends a DELETE request to the specified path of the Proxmox VE API.
-     *
-     * @param path the URI path to send the DELETE request to
-     * @param <T> the type of the response body
-     * @param responseType the class type of the expected response body
-     * @return the response body parsed into the specified type
-     */
-    public <T> T delete(String path, Class<T> responseType) {
-        return restClient.delete()
-                .uri(path)
                 .retrieve()
                 .toEntity(responseType)
                 .getBody();
